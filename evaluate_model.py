@@ -1,0 +1,33 @@
+# evaluate_model.py: test set accuracy and per-class breakdown
+import tensorflow as tf
+import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
+
+IMG_SIZE = (224, 224)
+BATCH_SIZE = 32
+
+test_data = tf.keras.utils.image_dataset_from_directory(
+    "dataset/test",
+    image_size=IMG_SIZE,
+    batch_size=BATCH_SIZE,
+    label_mode="categorical",
+    shuffle=False
+)
+class_names = test_data.class_names
+
+model = tf.keras.models.load_model("model/freshness_model.keras")
+
+# Overall score.
+loss, accuracy = model.evaluate(test_data)
+print("Test accuracy:", round(accuracy * 100, 2), "%")
+
+# Detailed score per class.
+true_labels = []
+pred_labels = []
+for images, labels in test_data:
+    preds = model.predict(images)
+    true_labels.extend(np.argmax(labels, axis=1))
+    pred_labels.extend(np.argmax(preds, axis=1))
+
+print(classification_report(true_labels, pred_labels, target_names=class_names))
+print(confusion_matrix(true_labels, pred_labels))
