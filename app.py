@@ -43,6 +43,8 @@ def show_result(image):
         st.error(f"🦠 This {fruit} looks **ROTTEN**")
         advice = "Better not eat this one — throw it away."
 
+    # Columns, metric, and progress widgets from the Streamlit API reference:
+    # https://docs.streamlit.io/develop/api-reference
     # Two small metric boxes side by side.
     left, right = st.columns(2)
     left.metric("Fruit", fruit)
@@ -57,6 +59,9 @@ def show_result(image):
 # ---------------------------------------------------------------------------
 # Page layout
 # ---------------------------------------------------------------------------
+# Streamlit widgets (set_page_config, file_uploader, radio, selectbox, image,
+# spinner, button) used following the Streamlit API reference:
+# https://docs.streamlit.io/develop/api-reference
 st.set_page_config(page_title="Fruit Freshness Detector", page_icon="🍎")
 
 st.title("🍎 Fruit Freshness Detector")
