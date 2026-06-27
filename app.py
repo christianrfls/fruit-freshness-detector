@@ -1,8 +1,7 @@
 # app.py
 # Streamlit front-end for the Fruit Freshness Detector.
-# Lets a user upload (or pick) a fruit photo and shows whether the model
-# thinks it is Fresh or Rotten, which fruit it is, and how confident it is.
-#
+# Lets a user upload (or pick) a fruit photo and shows whether the model thinks it is Fresh or Rotten, which fruit it is, and how confident it is.
+
 # Run with:  streamlit run app.py
 # Streamlit docs: https://docs.streamlit.io
 
@@ -10,7 +9,7 @@ import os
 from PIL import Image
 import streamlit as st
 
-# predict_image() is the model wrapper written by the team (predict.py).
+# predict_image() is the model wrapper (predict.py)
 # It returns a (state, fruit, confidence) tuple for a PIL image.
 from predict import predict_image
 
