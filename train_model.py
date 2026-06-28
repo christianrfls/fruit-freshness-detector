@@ -63,11 +63,10 @@ model.compile(
 
 model.summary()   # prints the structure 
 
-EPOCHS = 5
 history = model.fit(
     train_data,
     validation_data=test_data,
-    epochs=EPOCHS
+    epochs=5
 )
 
 # Model saving adapted from:
