@@ -6,7 +6,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 
-# Image loading approach adapted from the TensorFlow image classification tutorial:
+# Image loading approach adapted from:
 # https://www.tensorflow.org/tutorials/images/classification
 test_data = tf.keras.utils.image_dataset_from_directory(
     "dataset/test",
@@ -17,7 +17,7 @@ test_data = tf.keras.utils.image_dataset_from_directory(
 )
 class_names = test_data.class_names
 
-# Loading the saved model from the Keras save and load guide:
+# Loading the saved model from:
 # https://www.tensorflow.org/tutorials/keras/save_and_load
 model = tf.keras.models.load_model("model/freshness_model.keras")
 
@@ -25,10 +25,10 @@ model = tf.keras.models.load_model("model/freshness_model.keras")
 loss, accuracy = model.evaluate(test_data)
 print("Test accuracy:", round(accuracy * 100, 2), "%")
 
-# FLAG: Prediction loop collecting true and predicted labels closely follows
-# the evaluation pattern from the TensorFlow image classification tutorial:
+# Prediction loop collecting true and predicted labels taken from:
 # https://www.tensorflow.org/tutorials/images/classification
-# Detailed score per class.
+
+# purpose: detailed score per class.
 true_labels = []
 pred_labels = []
 for images, labels in test_data:
@@ -36,7 +36,7 @@ for images, labels in test_data:
     true_labels.extend(np.argmax(labels, axis=1))
     pred_labels.extend(np.argmax(preds, axis=1))
 
-# Classification report and confusion matrix from scikit-learn metrics documentation:
+# Classification report and confusion matrix from:
 # https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html
 print(classification_report(true_labels, pred_labels, target_names=class_names))
 print(confusion_matrix(true_labels, pred_labels))
